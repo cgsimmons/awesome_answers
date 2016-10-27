@@ -38,6 +38,11 @@ group :development, :test do
   gem 'byebug', platform: :mri
   # gem 'faker'
   gem 'cowsay'
+  gem 'interactive_editor'
+  gem 'awesome_print'
+  gem 'hirb'
+  gem 'pry'
+  gem 'pry-rails'
 end
 
 group :development do
@@ -47,10 +52,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-
-  gem 'interactive_editor'
-  gem 'awesome_print'
-  gem 'hirb'
 
 end
 

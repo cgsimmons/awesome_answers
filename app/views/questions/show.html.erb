@@ -4,12 +4,14 @@
   Created By:  <%= @question.user_full_name %>
 </p>
 <% if can? :manage, @question %>
+  <div>
   <%= link_to 'edit', edit_question_path(@question)%>
   <%= link_to 'delete', question_path(@question),
                         method: :delete,
                         data: {confirm: 'Are you sure?'}%>
+  </div>
 <% end %>
-                      <br><br>
+
 <div class="errors"><%= @answer.errors.full_messages.join(', ') %></div>
 <%= form_for [@question, @answer] do |f| %>
   <div>
