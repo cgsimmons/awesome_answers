@@ -5,6 +5,8 @@ class Question < ApplicationRecord
   has_many :likers, through: :likes, source: :user
   has_many :votes, dependent: :destroy
   has_many :voters, through: :votes, source: :user
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
 
   validates :title, presence: true, uniqueness: {case_sensative: false,
                                                  message: 'must be unique'}
