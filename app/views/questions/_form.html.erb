@@ -14,6 +14,12 @@
     <%= f.label :body %>
     <%= f.text_area :body %>
   </div>
+  <div>
+    <%= f.collection_select(
+      :tag_ids, Tag.all, :id, :name, {},
+      {multiple: true, class: 'chosen-select' }
+    ) %>
+  </div>
 
   <%# this will automatically generate a submit button. The label for the button
       will depend on the `@question` variable. If @question is a new instance
@@ -22,3 +28,7 @@
       arguement: f.submit 'Create'  %>
   <%= f.submit btn_label%>
 <% end %>
+
+<script>
+  $('.chosen-select').chosen({width: '300px'})
+</script>
