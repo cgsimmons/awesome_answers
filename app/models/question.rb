@@ -30,6 +30,10 @@ class Question < ApplicationRecord
     likes.find_by(user: user)
   end
 
+  def vote_value
+    votes.up.count - votes.down.count
+  end
+
   private
   def set_defaults
     self.view_count ||=0

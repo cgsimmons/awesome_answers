@@ -27,6 +27,7 @@
 <section class="vote-widget">
   <%= upvote_link @question %>
   <%= downvote_link @question %>
+  <%= @question.vote_value %>
 </section>
 
 <div class="errors"><%= @answer.errors.full_messages.join(', ') %></div>
