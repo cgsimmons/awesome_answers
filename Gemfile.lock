@@ -183,6 +183,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   cowsay
   faker
+  font-awesome-rails
   hirb
   interactive_editor
   jbuilder (~> 2.5)

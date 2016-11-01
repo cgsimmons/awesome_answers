@@ -19,6 +19,8 @@ Rails.application.routes.draw do
     end
 
     resources :likes, only: [:create, :destroy]
+    resources :votes, only: [:create, :destroy, :update]
+
   end
   # get '/questions/new'  => 'questions#new', as: :new_question
   # post({'/questions'    => 'questions#create', as: :questions})
