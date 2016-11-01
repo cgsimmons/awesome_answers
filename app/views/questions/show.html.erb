@@ -25,20 +25,8 @@
 (<%= pluralize @question.likes.count, "like" %>)
 
 <section class="vote-widget">
-  <% vote = @question.votes.find_by(user: current_user) %>
-  <%= link_to(
-   fa_icon("arrow-up"),
-   question_votes_path(@question, vote: {is_up:true}),
-   method: :post,
-   class: "vote-link #{vote&.is_up? ? 'vote-up': ''}"
-   )%>
-
-   <%= link_to(
-    fa_icon("arrow-down"),
-    question_votes_path(@question, vote: {is_up:false}),
-    method: :post,
-    class: "vote-link #{vote&.is_up? ? 'vote-down': ''}"
-    )%>
+  <%= upvote_link @question %>
+  <%= downvote_link @question %>
 </section>
 
 <div class="errors"><%= @answer.errors.full_messages.join(', ') %></div>
