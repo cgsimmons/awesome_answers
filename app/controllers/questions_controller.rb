@@ -23,6 +23,7 @@ class QuestionsController < ApplicationController
 
   def show
     @answer = Answer.new
+    @like = @question.like_for(current_user)
   end
 
   def index

@@ -14,7 +14,13 @@ Rails.application.routes.draw do
     # get :search, on: :collection
     # get :flag, on: :member
     # post :approve
-    resources :answers, only: [:create, :destroy]
+    resources :answers, only: [:create, :destroy] do
+      resources :comments, only: [:create, :destroy]
+    end
+
+    resources :likes, only: [:create, :destroy]
+    resources :votes, only: [:create, :destroy, :update]
+
   end
   # get '/questions/new'  => 'questions#new', as: :new_question
   # post({'/questions'    => 'questions#create', as: :questions})
