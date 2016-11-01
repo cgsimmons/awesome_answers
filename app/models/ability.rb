@@ -5,20 +5,32 @@ class Ability
 
     user ||= User.new
 
-      can :destroy, Answer do |a|
-        a.user == user || a.question.user == user
-      end
 
-      can :manage, [Question, Answer] do |q|
-        q.user == user
-      end
-    # Define abilities for the passed in user here. For example:
-    #
-      if user.admin?
-        can :manage, :all
-      else
-        can :read, :all
-      end
+    can :manage, [Question, Answer] do |q|
+      q.user == user
+    end
+
+    cannot :like, Question do |q|
+      q.user == user
+    end
+
+    can :like, Question do |q|
+      q.user != user
+    end
+
+    can :destroy, Answer do |a|
+      a.user == user || a.question.user == user
+    end
+
+
+
+  # Define abilities for the passed in user here. For example:
+  #
+    if user.admin?
+      can :manage, :all
+    else
+      can :read, :all
+    end
 
     # The first argument to `can` is the action you are giving the user
     # permission to do.
