@@ -3,6 +3,8 @@ class Question < ApplicationRecord
   has_many :answers, -> { order(created_at: :DESC) }, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :likers, through: :likes, source: :user
+  has_many :votes, dependent: :destroy
+  has_many :voters, through: :votes, source: :user
 
   validates :title, presence: true, uniqueness: {case_sensative: false,
                                                  message: 'must be unique'}
