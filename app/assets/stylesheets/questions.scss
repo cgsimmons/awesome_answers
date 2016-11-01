@@ -17,3 +17,15 @@
   display: table;
   margin: 0 auto;
 }
+
+.vote-link{
+  color: Grey;
+}
+
+.vote-link.vote-up{
+  color: Orange;
+}
+
+.vote-link.vote-down {
+  color: Blue;
+}
