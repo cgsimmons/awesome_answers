@@ -32,6 +32,7 @@ gem 'cancancan'
 gem 'faker'
 gem 'font-awesome-rails'
 gem 'chosen-rails'
+gem 'bootstrap-sass', '~>3.3'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
