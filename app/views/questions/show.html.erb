@@ -42,23 +42,36 @@
     </section>
 
   </div>
-
-<div class="errors"><%= @answer.errors.full_messages.join(', ') %></div>
-<%= form_for [@question, @answer] do |f| %>
-  <div>
-    <%= f.label :body %>
-    <%= f.text_area :body %>
+</div>
+<hr/>
+<div class="row">
+  <%= @answer.errors.full_messages.join(', ') %>
+  <div class="col-xs-12">
+    <%= form_for [@question, @answer] do |f| %>
+      <div>
+        <%= f.label :body %>
+        <%= f.text_area :body, class: "form-control" %>
+      </div>
+      <%= f.submit class: "btn btn-default"%>
+    <% end %>
+    <hr/>
   </div>
-  <%= f.submit %>
-<% end %>
-<h2>Answers</h2>
-<% @question.answers.each do |ans| %>
-  <%= ans.body %>
-  <% if can? :delete, ans  %>
-    <%= link_to 'Delete', answer_path(ans),
-                          method: :delete,
-                          data: {confirm: 'Are you sure?'}%>
-  <% end %>
-  <hr>
+  <% @question.answers.each do |ans| %>
+    <div class="col-xs-12">
+      <div class="col-xs-11">
+        <%= ans.body %>
+      </div>
+      <div class="col-xs-1">
+        <% if can? :delete, ans  %>
+          <%= link_to answer_path(ans),
+                                method: :delete,
+                                data: {confirm: 'Are you sure?'},
+                                class: "pull-right" do %>
+          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+          <% end %>
+        <% end %>
+      </div>
+      <hr>
+    </div>
   <% end %>
 </div>
