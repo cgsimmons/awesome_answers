@@ -45,33 +45,12 @@
 </div>
 <hr/>
 <div class="row">
-  <%= @answer.errors.full_messages.join(', ') %>
-  <div class="col-xs-12">
-    <%= form_for [@question, @answer] do |f| %>
-      <div>
-        <%= f.label :body %>
-        <%= f.text_area :body, class: "form-control" %>
-      </div>
-      <%= f.submit class: "btn btn-default"%>
-    <% end %>
-    <hr/>
+  <div id="answer-form">
+    <%= render '/answers/form' %>
   </div>
-  <% @question.answers.each do |ans| %>
-    <div class="col-xs-12">
-      <div class="col-xs-11">
-        <%= ans.body %>
-      </div>
-      <div class="col-xs-1">
-        <% if can? :delete, ans  %>
-          <%= link_to answer_path(ans),
-                                method: :delete,
-                                data: {confirm: 'Are you sure?'},
-                                class: "pull-right" do %>
-          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-          <% end %>
-        <% end %>
-      </div>
-      <hr>
-    </div>
-  <% end %>
+  <div id='answers'>
+    <% @question.answers.each do |answer| %>
+      <%= render('/answers/answer', {ans: answer})%>
+    <% end %>
+  </div>
 </div>

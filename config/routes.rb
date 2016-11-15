@@ -4,6 +4,20 @@ Rails.application.routes.draw do
   #home controller
   # get '/' => 'home#index', as: :home
   root 'home#index'
+
+  get '/auth/twitter', as: :sign_in_with_twitter
+  get '/auth/twitter/callback' => 'callbacks#twitter'
+  namespace :admin do
+    resources :questions
+  end
+
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :questions, only: [:index, :show, :create]
+    end
+  end
+
+
   get '/contact' => 'home#contact'
   post '/contact_submit' => 'home#contact_submit'
   resources :users, only: [:create, :new]

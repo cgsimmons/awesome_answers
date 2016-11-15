@@ -1,0 +1,17 @@
+<div class="col-xs-12" id="<%= dom_id(ans) %>">
+  <div class="col-xs-11">
+    <%= ans.body %>
+  </div>
+  <div class="col-xs-1">
+    <% if can? :delete, ans  %>
+      <%= link_to answer_path(ans),
+                            remote: true,
+                            method: :delete,
+                            data: {confirm: 'Are you sure?'},
+                            class: "pull-right" do %>
+      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+      <% end %>
+    <% end %>
+  </div>
+  <hr>
+</div>

@@ -7,21 +7,33 @@ class AnswersController < ApplicationController
     @answer          = Answer.new answer_params
     @answer.question = @question
     @answer.user     = current_user
-    if @answer.save
-      redirect_to question_path(@question), notice: 'Answer created!'
-    else
-      render 'questions/show'
+    respond_to do |format|
+      if @answer.save
+        format.js {render :create_success}
+        format.html do
+          redirect_to question_path(@question), notice: 'Answer created!'
+        end
+      else
+        format.js {render :create_failure}
+        format.html {render 'questions/show'}
+      end
     end
   end
 
   def destroy
-    answer = Answer.find params[:id]
-    if can? :destroy, answer
-      question = answer.question
-      answer.destroy
-      redirect_to question_path(question), notice: 'Answer deleted!'
-    else
-      redirect_to root_path, alert: 'Access Denied'
+    @answer = Answer.find params[:id]
+    respond_to do |format|
+
+      if can? :destroy, @answer
+        question = @answer.question
+        @answer.destroy
+        format.html { redirect_to question, notice: 'Answer deleted!'}
+        format.js { render }  #destroy.js.erb by default
+      else
+        format.html { redirect_to root_path, alert: 'Access Denied'}
+        format.js { render js: 'alert("Access denied.")'; }
+      end
+
     end
   end
 
