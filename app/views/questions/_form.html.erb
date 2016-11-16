@@ -1,41 +1,44 @@
-<div class="errors"><%= @question.errors.full_messages.join(', ') %>
-</div>
-<%# We use form_for when we're creating a form related to a Rails model. the
-    first argument of the form_for must be an ActiveRecord object.
-    if the first argument is a new instance of the ActiveRecord class, for
-    example, Question.new then the form will automatically send a POST request
-    to the standard create action url which is in this case: questions_path %>
-<%= form_for @question do |f| %>
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-  <div>
-    <%= f.label :body %>
-    <%= f.text_area :body %>
-  </div>
-  <div>
-    <%= f.collection_select(
-      :tag_ids, Tag.all, :id, :name, {},
-      {multiple: true, class: 'chosen-select' }
-    ) %>
-  </div>
-
-  <% if !@question.persisted? && current_user.signed_in_with_twitter? %>
-    <div>
-      <%= f.check_box :tweet_this%>
-      <%= f.label :tweet_this %>
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-sm-offset-1">
+    <div class="errors"><%= @question.errors.full_messages.join(', ') %>
     </div>
-  <% end %>
+    <%# We use form_for when we're creating a form related to a Rails model. the
+        first argument of the form_for must be an ActiveRecord object.
+        if the first argument is a new instance of the ActiveRecord class, for
+        example, Question.new then the form will automatically send a POST request
+        to the standard create action url which is in this case: questions_path %>
+    <%= form_for @question do |f| %>
+      <div class="form-group">
+        <%= f.label :title %>
+        <%= f.text_field :title, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.label :body %>
+        <%= f.text_area :body, class: "form-control" %>
+      </div>
+      <div class="form-group">
+        <%= f.collection_select(
+          :tag_ids, Tag.all, :id, :name, {},
+          {multiple: true, class: 'chosen-select' }
+        ) %>
+      </div>
 
-  <%# this will automatically generate a submit button. The label for the button
-      will depend on the `@question` variable. If @question is a new instance
-      then the label of the button will be `Create #{model name capitalized}`.
-      If you're not happy with the label, you can pass the label as a first
-      arguement: f.submit 'Create'  %>
-  <%= f.submit btn_label%>
-<% end %>
+      <% if !@question.persisted? && current_user.signed_in_with_twitter? %>
+        <div class="form-group">
+          <%= f.check_box :tweet_this%>
+          <%= f.label :tweet_this %>
+        </div>
+      <% end %>
 
+      <%# this will automatically generate a submit button. The label for the button
+          will depend on the `@question` variable. If @question is a new instance
+          then the label of the button will be `Create #{model name capitalized}`.
+          If you're not happy with the label, you can pass the label as a first
+          arguement: f.submit 'Create'  %>
+      <%= f.submit btn_label, class: "btn btn-default" %>
+    <% end %>
+  </div>
+</div>
 <script>
   $('.chosen-select').chosen({width: '300px'})
 </script>
