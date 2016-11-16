@@ -13,13 +13,15 @@ class QuestionsController < ApplicationController
     @question = Question.new question_params
     @question.user = current_user
     if @question.save
-      client = Twitter::REST::Client.new do |config|
-        config.consumer_key        = ENV['TWITTER_CONSUMER_KEY']
-        config.consumer_secret     = ENV['TWITTER_CONSUMER_SECRET']
-        config.access_token        = current_user.oauth_token
-        config.access_token_secret = current_user.oauth_secret
+      if current_user.signed_in_with_twitter?
+        client = Twitter::REST::Client.new do |config|
+          config.consumer_key        = ENV['TWITTER_CONSUMER_KEY']
+          config.consumer_secret     = ENV['TWITTER_CONSUMER_SECRET']
+          config.access_token        = current_user.oauth_token
+          config.access_token_secret = current_user.oauth_secret
+        end
+        client.update @question.title
       end
-      client.update @question.title
       # flash[:notice] = 'Question Created'
       redirect_to question_path(@question), notice: 'Question Created'
     else
