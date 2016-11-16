@@ -1,5 +1,5 @@
 class Question < ApplicationRecord
-  attr_accessor :tweet_this
+  attr_reader :tweet_this
   belongs_to :user
   has_many :answers, -> { order(created_at: :DESC) }, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -16,6 +16,10 @@ class Question < ApplicationRecord
   validates :view_count, numericality: {greater_than_or_equal_to: 0}
   after_initialize :set_defaults
   before_validation :titleize_title
+  
+  def tweet_this=(value)
+   @tweet_this = ActiveRecord::Type::Boolean.new.cast(value)
+  end
 
   def self.recent_ten
     limit(10).order(created_at: :desc)
