@@ -1,5 +1,4 @@
 class AnswersMailer < ApplicationMailer
-
   def notify_question_owner(answer)
     @answer = answer
     @question = @answer.question
