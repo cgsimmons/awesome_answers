@@ -24,7 +24,9 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'kaminari'
-
+gem 'friendly_id'
+gem 'simple_form'
+gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -36,6 +38,7 @@ gem 'chosen-rails'
 gem 'bootstrap-sass', '~>3.3'
 gem 'rack-cors'
 gem 'twitter'
+gem 'mini_magick'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

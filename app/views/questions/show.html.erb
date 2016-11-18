@@ -40,6 +40,10 @@
     <section class="tag-widget">
       Tags: <%= @question.tags.map(&:name).join(", ") %>
     </section>
+      <%= image_tag @question.image.url %>
+    <section>
+      <%=  %>
+    </section>
 
   </div>
 </div>

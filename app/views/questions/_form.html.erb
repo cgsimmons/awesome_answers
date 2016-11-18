@@ -1,13 +1,32 @@
 <div class="row">
   <div class="col-xs-12 col-sm-8 col-sm-offset-1">
-    <div class="errors"><%= @question.errors.full_messages.join(', ') %>
-    </div>
+    <!--<div class="errors"><%= @question.errors.full_messages.join(', ') %>
+    </div> -->
     <%# We use form_for when we're creating a form related to a Rails model. the
         first argument of the form_for must be an ActiveRecord object.
         if the first argument is a new instance of the ActiveRecord class, for
         example, Question.new then the form will automatically send a POST request
         to the standard create action url which is in this case: questions_path %>
-    <%= form_for @question do |f| %>
+    <%= simple_form_for @question do |f| %>
+        <%= f.input :title %>
+        <%= f.input :body %>
+        <%= f.input :image %>
+
+        <%= f.collection_select(
+          :tag_ids, Tag.all, :id, :name, {},
+          {multiple: true, class: 'chosen-select' }
+        ) %><br>
+
+
+      <% if !@question.persisted? && current_user.signed_in_with_twitter? %>
+        <%= f.input :tweet_this, as: :boolean%>
+      <% else %>
+        <br>
+      <% end %>
+      <%= f.button :submit, class: "btn btn-primary"%>
+    <% end %>
+
+<!--    <%= form_for @question do |f| %>
       <div class="form-group">
         <%= f.label :title %>
         <%= f.text_field :title, class: "form-control" %>
@@ -36,7 +55,7 @@
           If you're not happy with the label, you can pass the label as a first
           arguement: f.submit 'Create'  %>
       <%= f.submit btn_label, class: "btn btn-default" %>
-    <% end %>
+    <% end %> -->
   </div>
 </div>
 <script>

@@ -59,6 +59,7 @@ class QuestionsController < ApplicationController
   # URL: /questions/:id/update
   # METHOD: PATCH
   def update
+    @question.slug = nil
     if @question.update question_params
       redirect_to question_path(@question)
     else
@@ -76,11 +77,16 @@ class QuestionsController < ApplicationController
 
   private
   def question_params
-    params.require(:question).permit([:title, :body, :tweet_this, tag_ids: []])
+    params.require(:question).permit([:title,
+                                      :body,
+                                      :tweet_this,
+                                      :image, 
+                                      tag_ids: []])
   end
 
   def find_question
-    @question = Question.find(params[:id])
+    @question = Question.friendly.find(params[:id])
+
   end
 
   def authorize_access

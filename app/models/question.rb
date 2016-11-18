@@ -16,7 +16,12 @@ class Question < ApplicationRecord
   validates :view_count, numericality: {greater_than_or_equal_to: 0}
   after_initialize :set_defaults
   before_validation :titleize_title
-  
+
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :history]
+
+  mount_uploader :image, ImageUploader
+
   def tweet_this=(value)
    @tweet_this = ActiveRecord::Type::Boolean.new.cast(value)
   end
@@ -44,6 +49,10 @@ class Question < ApplicationRecord
   def vote_value
     votes.up.count - votes.down.count
   end
+
+  # def to_param
+  #   "#{id}-#{title}".parameterize
+  # end
 
   private
   def set_defaults
