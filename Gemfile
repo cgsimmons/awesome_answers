@@ -39,6 +39,7 @@ gem 'bootstrap-sass', '~>3.3'
 gem 'rack-cors'
 gem 'twitter'
 gem 'mini_magick'
+gem 'fog'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -62,7 +63,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'letter_opener'
-
+  gem 'rails-erd'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
