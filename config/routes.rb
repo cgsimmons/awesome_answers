@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   #home controller
   # get '/' => 'home#index', as: :home
   root 'home#index'
-
+  match "/delayed_job" => DelayedJobWeb, :anchor => false, via: [:get, :post]
   get '/auth/twitter', as: :sign_in_with_twitter
   get '/auth/twitter/callback' => 'callbacks#twitter'
   namespace :admin do

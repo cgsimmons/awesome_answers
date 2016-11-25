@@ -25,6 +25,7 @@ module AwesomeAnswers
     # this will make sending unpermitted parameters raise an exception instead
        # of just logging it.
        # config.action_controller.action_on_unpermitted_parameters = :raise
+       config.active_job.queue_adapter = :delayed_job
        config.middleware.insert_before 0, Rack::Cors do
         allow do
           origins '*'
