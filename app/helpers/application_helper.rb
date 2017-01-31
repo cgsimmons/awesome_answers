@@ -17,7 +17,7 @@ module ApplicationHelper
 
     link_to(
      fa_icon("caret-up", class: "fa-4x"), path, method: method,
-     class: "vote-link #{vote&.is_up? ? 'vote-up': ''}"
+     class: "vote-link #{(vote && vote.is_up?) ? 'vote-up': ''}"
      )
 
   end
@@ -39,7 +39,7 @@ module ApplicationHelper
 
     link_to(
      fa_icon("caret-down", class: "fa-4x"), path, method: method,
-     class: "vote-link #{vote&.is_down? ? 'vote-down': ''}"
+     class: "vote-link #{(vote && vote.is_down?) ? 'vote-down': ''}"
      )
 
   end
