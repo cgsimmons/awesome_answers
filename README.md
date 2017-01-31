@@ -1,4 +1,4 @@
-## AWESOME answerawesome
+## AWESOME ANSWERS
 
 This is a simple Question & Answer web app built on rails. An API is also implemented. Some of the more interesting gems used include:
 
