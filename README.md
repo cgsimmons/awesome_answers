@@ -1,24 +1,35 @@
-# README
+## AWESOME answerawesome
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple Question & Answer web app built on rails. An API is also implemented. Some of the more interesting gems used include:
 
-Things you may want to cover:
+* omniauth-twitter
 
-* Ruby version
+* fog
 
-* System dependencies
+* carrierwave
 
-* Configuration
+* active_model_serializers
 
-* Database creation
+* cancancan
 
-* Database initialization
+* simple_form
 
-* How to run the test suite
+* and many more...
 
-* Services (job queues, cache servers, search engines, etc.)
+## Installation
 
-* Deployment instructions
+Be suer to copy the file 'config/initializer/app_keys.example.rb' to '/config/initializer/app_keys.rb'. You will then need to uncomment the lines that define the keys. Don't forget to write your own keys into the file. The app currently supports email (for notifications), twitter (for authentication), and AWS S3(for storing images).
 
-* ...
+Then you can proceed with normal installation.
+
+```bash
+rails install
+rails db:setup
+rails s
+```
+**Note:** If you don't want to use faker to seed the app, replace 'rails db:setup with the commands below:'
+
+```bash
+rails db:create
+rails db:migrate
+```
