@@ -1,7 +1,7 @@
 10.times do
   Tag.create(name: Faker::GameOfThrones.house)
 end
-puts Cowsay.say("Generated up to 10 tags", 'random')
+puts "Generated up to 10 tags"
 
 password = "password"
 20.times do
@@ -31,4 +31,4 @@ users = User.all
                 is_up: [true, false].sample)
   end
 end
-puts Cowsay.say("SEEDS!", 'random')
+puts "SEEDS!"
