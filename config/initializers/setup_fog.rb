@@ -1,14 +1,5 @@
 CarrierWave.configure do |config|
 
-  # Choose what kind of storage to use for this uploader:
-  #storage :file
-
-  if Rails.env.production?
-    storage :fog
-  else
-    storage :file
-  end
-
   config.fog_credentials = {
     provider:              'AWS',
     aws_access_key_id:     ENV['AWS_ACCESS_KEY_ID'],
